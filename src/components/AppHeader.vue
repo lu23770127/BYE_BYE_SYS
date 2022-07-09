@@ -1,77 +1,416 @@
 <script setup lang="ts">
-	defineEmits(['toggleSidebar']);
+defineEmits(['toggleSidebar']);
 
-	const { availableLocales } = useI18n();
+const { availableLocales } = useI18n();
 
-	const preferedDark = usePreferredDark();
-	const isDark = useStorage('isDark', preferedDark.value);
-	const body = ref<HTMLBodyElement | null>(null);
+const preferedDark = usePreferredDark();
+const isDark = useStorage('isDark', preferedDark.value);
+const body = ref<HTMLBodyElement | null>(null);
 
-	const toggleDarkMode = () => {
-		if (body.value) {
-			if (isDark.value) {
-				body.value.classList.remove('dark');
-			} else {
-				body.value.classList.add('dark');
-			}
+const toggleDarkMode = () => {
+	if (body.value) {
+		if (isDark.value) {
+			body.value.classList.remove('dark');
+		} else {
+			body.value.classList.add('dark');
 		}
-		isDark.value = !isDark.value;
-	};
+	}
+	isDark.value = !isDark.value;
+};
 
-	onMounted(async () => {
-		await nextTick();
+onMounted(async () => {
+	await nextTick();
 
-		body.value = document.querySelector('body') as HTMLBodyElement;
-		if (body.value) {
-			if (isDark.value) body.value.classList.add('dark');
-		}
-	});
+	body.value = document.querySelector('body') as HTMLBodyElement;
+	if (body.value) {
+		if (isDark.value) body.value.classList.add('dark');
+	}
+});
 </script>
 
 <template>
 	<header>
-		<nav
-			class="
-				w-full
-				bg-white
-				text-gray-800
-				dark:bg-gray-800 dark:text-white
-				py-4
-				px-8
-				shadow-md
-				dark:shadow-md
-				flex
-				items-center
-				border-b border-gray-400/50
-			"
-		>
-			<router-link :to="{ name: 'home' }">
-				<div class="font-bold lg:text-xl md:text-lg text-md">Vitailse</div>
-			</router-link>
-			<div class="ml-auto flex items-center h-full">
-				<select
-					id="language"
-					v-model="$i18n.locale"
-					class="py-1 focus:outline-none rounded dark:text-gray-800"
-				>
-					<option
-						v-for="locale in availableLocales"
-						:key="locale"
-						:value="locale"
+		<nav class="bg-white px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+			<div
+				class="
+					flex flex-wrap
+					justify-between
+					items-center
+					mx-auto
+					max-w-screen-xl
+					px-4
+					py-8
+				"
+			>
+				<router-link :to="{ name: 'home' }" class="flex items-center">
+					<icon-la:book-dead
+						class="h-10 w-10 p-1"
+						style="color: #06b6d4"
+					/>
+					<span
+						class="
+							self-center
+							text-xl
+							font-semibold
+							whitespace-nowrap
+							dark:text-white
+						"
+						>{{ $t('bye-bye-sys') }}</span
 					>
-						{{ locale }}
-					</option>
-				</select>
-				<button
-					class="mx-5 cursor-pointer focus:outline-none"
-					@click="toggleDarkMode"
+				</router-link>
+				<div class="flex items-center lg:order-2 space-x-4">
+					<button
+						class="mx-5 cursor-pointer focus:outline-none"
+						@click="toggleDarkMode"
+					>
+						<icon:bx:bx-moon class="w-6 h-6" v-if="!isDark" />
+						<icon:bx:bxs-moon class="w-6 h-6" v-else />
+					</button>
+					<a href="https://github.com/zynth17/vitailse">
+						<icon-akar-icons:github-fill />
+					</a>
+					<select
+						id="language"
+						v-model="$i18n.locale"
+						class="focus:outline-none rounded dark:text-gray-800"
+					>
+						<option
+							v-for="locale in availableLocales"
+							:key="locale"
+							:value="locale"
+						>
+							{{ locale }}
+						</option>
+					</select>
+
+					<button
+						id="dropdownDefault"
+						data-dropdown-toggle="dropdown"
+						class="
+							text-white
+							bg-blue-700
+							hover:bg-blue-800
+							focus:ring-4 focus:outline-none focus:ring-blue-300
+							font-medium
+							rounded-lg
+							text-sm
+							px-4
+							py-2.5
+							text-center
+							inline-flex
+							items-center
+							dark:bg-blue-600
+							dark:hover:bg-blue-700
+							dark:focus:ring-blue-800
+						"
+						type="button"
+					>
+						Dropdown button
+						<svg
+							class="w-4 h-4 ml-2"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M19 9l-7 7-7-7"
+							></path>
+						</svg>
+					</button>
+					<!-- Dropdown menu -->
+					<div
+						id="dropdown"
+						class="
+							z-10
+							hidden
+							bg-white
+							divide-y divide-gray-100
+							rounded
+							shadow
+							w-44
+							dark:bg-gray-700
+						"
+						style="
+							position: absolute;
+							inset: 0px auto auto 0px;
+							margin: 0px;
+							transform: translate3d(351.5px, 735.5px, 0px);
+						"
+						data-popper-placement="bottom"
+					>
+						<ul
+							class="
+								py-1
+								text-sm text-gray-700
+								dark:text-gray-200
+							"
+							aria-labelledby="dropdownDefault"
+						>
+							<li>
+								<a
+									href="#"
+									class="
+										block
+										px-4
+										py-2
+										hover:bg-gray-100
+										dark:hover:bg-gray-600
+										dark:hover:text-white
+									"
+									>Dashboard</a
+								>
+							</li>
+							<li>
+								<a
+									href="#"
+									class="
+										block
+										px-4
+										py-2
+										hover:bg-gray-100
+										dark:hover:bg-gray-600
+										dark:hover:text-white
+									"
+									>Settings</a
+								>
+							</li>
+							<li>
+								<a
+									href="#"
+									class="
+										block
+										px-4
+										py-2
+										hover:bg-gray-100
+										dark:hover:bg-gray-600
+										dark:hover:text-white
+									"
+									>Earnings</a
+								>
+							</li>
+							<li>
+								<a
+									href="#"
+									class="
+										block
+										px-4
+										py-2
+										hover:bg-gray-100
+										dark:hover:bg-gray-600
+										dark:hover:text-white
+									"
+									>Sign out</a
+								>
+							</li>
+						</ul>
+					</div>
+
+					<button
+						data-collapse-toggle="mobile-menu-2"
+						type="button"
+						class="
+							inline-flex
+							items-center
+							p-2
+							ml-1
+							text-sm text-gray-500
+							rounded-lg
+							lg:hidden
+							hover:bg-gray-100
+							focus:outline-none focus:ring-2 focus:ring-gray-200
+							dark:text-gray-400
+							dark:hover:bg-gray-700
+							dark:focus:ring-gray-600
+						"
+						aria-controls="mobile-menu-2"
+						aria-expanded="false"
+					>
+						<span class="sr-only">Open main menu</span>
+						<svg
+							class="w-6 h-6"
+							fill="currentColor"
+							viewBox="0 0 20 20"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								fill-rule="evenodd"
+								d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+								clip-rule="evenodd"
+							></path>
+						</svg>
+						<svg
+							class="hidden w-6 h-6"
+							fill="currentColor"
+							viewBox="0 0 20 20"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								fill-rule="evenodd"
+								d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+								clip-rule="evenodd"
+							></path>
+						</svg>
+					</button>
+
+					<router-link
+						:to="{ name: 'login' }"
+						class="
+							text-white
+							bg-cyan-700
+							hover:bg-cyan-800
+							focus:ring-4 focus:ring-cyan-300
+							font-medium
+							rounded-lg
+							text-sm
+							px-5
+							py-2.5
+							mr-2
+							dark:bg-cyan-600 dark:hover:bg-cyan-700
+							focus:outline-none
+							dark:focus:ring-cyan-800
+						"
+						>{{ $t('header.nav.login') }}</router-link
+					>
+				</div>
+				<div
+					class="
+						hidden
+						justify-between
+						items-center
+						w-full
+						lg:flex lg:w-auto lg:order-1
+					"
+					id="mobile-menu-2"
 				>
-					<icon:bx:bx-moon class="w-6 h-6" v-if="!isDark" />
-					<icon:bx:bxs-moon class="w-6 h-6" v-else />
-				</button>
-				<a href="https://github.com/zynth17/vitailse">
-					<icon-akar-icons:github-fill />
-				</a>
+					<ul
+						class="
+							flex flex-col
+							mt-4
+							font-medium
+							lg:flex-row lg:space-x-8 lg:mt-0
+						"
+					>
+						<li>
+							<router-link
+								:to="{ name: 'home' }"
+								class="
+									block
+									py-2
+									pr-4
+									pl-3
+									text-white
+									rounded
+									bg-cyan-700
+									lg:bg-transparent lg:text-cyan-700 lg:p-0
+									dark:text-white
+								"
+								aria-current="index"
+								>{{ $t('pages.home') }}</router-link
+							>
+						</li>
+						<li>
+							<a
+								href="#"
+								class="
+									block
+									py-2
+									pr-4
+									pl-3
+									text-gray-700
+									border-b border-gray-100
+									hover:bg-gray-50
+									lg:hover:bg-transparent
+									lg:border-0
+									lg:hover:text-cyan-700
+									lg:p-0
+									dark:text-gray-400
+									lg:dark:hover:text-white
+									dark:hover:bg-gray-700 dark:hover:text-white
+									lg:dark:hover:bg-transparent
+									dark:border-gray-700
+								"
+								>{{ $t('header.nav.concept') }}</a
+							>
+						</li>
+						<li>
+							<a
+								href="#"
+								class="
+									block
+									py-2
+									pr-4
+									pl-3
+									text-gray-700
+									border-b border-gray-100
+									hover:bg-gray-50
+									lg:hover:bg-transparent
+									lg:border-0
+									lg:hover:text-cyan-700
+									lg:p-0
+									dark:text-gray-400
+									lg:dark:hover:text-white
+									dark:hover:bg-gray-700 dark:hover:text-white
+									lg:dark:hover:bg-transparent
+									dark:border-gray-700
+								"
+								>{{ $t('header.nav.function') }}</a
+							>
+						</li>
+						<li>
+							<a
+								href="#"
+								class="
+									block
+									py-2
+									pr-4
+									pl-3
+									text-gray-700
+									border-b border-gray-100
+									hover:bg-gray-50
+									lg:hover:bg-transparent
+									lg:border-0
+									lg:hover:text-cyan-700
+									lg:p-0
+									dark:text-gray-400
+									lg:dark:hover:text-white
+									dark:hover:bg-gray-700 dark:hover:text-white
+									lg:dark:hover:bg-transparent
+									PP
+									dark:border-gray-700
+								"
+								>{{ $t('header.nav.team') }}</a
+							>
+						</li>
+						<li>
+							<a
+								href="#"
+								class="
+									block
+									py-2
+									pr-4
+									pl-3
+									text-gray-700
+									border-b border-gray-100
+									hover:bg-gray-50
+									lg:hover:bg-transparent
+									lg:border-0
+									lg:hover:text-cyan-700
+									lg:p-0
+									dark:text-gray-400
+									lg:dark:hover:text-white
+									dark:hover:bg-gray-700 dark:hover:text-white
+									lg:dark:hover:bg-transparent
+									dark:border-gray-700
+								"
+								>{{ $t('header.nav.contact') }}</a
+							>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</nav>
 	</header>

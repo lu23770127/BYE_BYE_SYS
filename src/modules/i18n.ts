@@ -18,7 +18,7 @@ const messages = Object.fromEntries(
 export const install: ViteSetupModule = ({ app }) => {
 	const i18n = createI18n({
 		legacy: false,
-		locale: 'en',
+		locale: 'zh-TW',
 		messages,
 		globalInjection: true,
 	});

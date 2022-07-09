@@ -1,13 +1,13 @@
 {
   "pages": {
-    "home": "Home",
+    "home": "首頁",
     "other": {
-      "menu": "other pages",
+      "menu": "其他頁面",
       "desc": "An example of other pages"
     },
-    "not-found": "Page not found",
+    "not-found": "找不到此頁面",
     "landing": {
-      "title": "BYE BYE SYS"
+      "title": "遺書管理系統"
     }
   },
   "app": {
@@ -22,10 +22,20 @@
     "reload": "Reload",
     "close": "Close"
   },
-  "hui-dao-shou-ye": "back to Home",
+  "hui-dao-shou-ye": "回到首頁",
   "page": {
     "landing": {
-      "hi": "Hello"
+      "hi": "你好"
     }
-  }
+  },
+  "header": {
+    "nav": {
+      "concept": "理念說明",
+      "function": "功能介紹",
+      "team": "開發團隊",
+      "contact": "聯絡我們",
+      "login": "立即登入"
+    }
+  },
+  "bye-bye-sys": "BYE BYE SYS"
 }

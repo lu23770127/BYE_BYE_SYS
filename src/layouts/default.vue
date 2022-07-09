@@ -10,7 +10,7 @@
 			dark:bg-gray-800 dark:text-white
 			bg-white
 			text-gray-800
-			min-h-screen
+			min-h-vh
 		"
 	>
 		<router-view />
