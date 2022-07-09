@@ -8,10 +8,9 @@ declare module '@vue/runtime-core' {
     AppHeader: typeof import('./src/components/AppHeader.vue')['default']
     'Icon:bx:bxMoon': typeof import('~icons/bx/bx-moon')['default']
     'Icon:bx:bxsMoon': typeof import('~icons/bx/bxs-moon')['default']
+    'Icon:materialSymbols:wbSunnyOutline': typeof import('~icons/material-symbols/wb-sunny-outline')['default']
     'IconAkarIcons:githubFill': typeof import('~icons/akar-icons/github-fill')['default']
-    'IconAntDesign:loginOutlined': typeof import('~icons/ant-design/login-outlined')['default']
     'IconLa:bookDead': typeof import('~icons/la/book-dead')['default']
-    'IconRi:loginCircleFill': typeof import('~icons/ri/login-circle-fill')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

@@ -34,7 +34,8 @@
       "function": "功能介紹",
       "team": "開發團隊",
       "contact": "聯絡我們",
-      "login": "立即登入"
+      "login": "立即登入",
+      "locale": "選擇語言"
     }
   },
   "bye-bye-sys": "BYE BYE SYS"

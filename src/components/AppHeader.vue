@@ -60,20 +60,30 @@ onMounted(async () => {
 				</router-link>
 				<div class="flex items-center lg:order-2 space-x-4">
 					<button
-						class="mx-5 cursor-pointer focus:outline-none"
+						class="cursor-pointer focus:outline-none"
 						@click="toggleDarkMode"
 					>
-						<icon:bx:bx-moon class="w-6 h-6" v-if="!isDark" />
-						<icon:bx:bxs-moon class="w-6 h-6" v-else />
+						<icon:bx:bxs-moon class="w-6 h-6" v-if="!isDark" />
+						<icon:material-symbols:wb-sunny-outline
+							class="w-6 h-6"
+							style="color: white"
+							v-else
+						/>
 					</button>
 					<a href="https://github.com/zynth17/vitailse">
-						<icon-akar-icons:github-fill />
+						<icon-akar-icons:github-fill
+							style="color: white"
+							v-if="isDark"
+						/>
+						<icon-akar-icons:github-fill v-else />
 					</a>
+
 					<select
 						id="language"
 						v-model="$i18n.locale"
-						class="focus:outline-none rounded dark:text-gray-800"
+						class="rounded"
 					>
+						<option disabled>{{ $t('header.nav.locale') }}</option>
 						<option
 							v-for="locale in availableLocales"
 							:key="locale"
@@ -82,132 +92,6 @@ onMounted(async () => {
 							{{ locale }}
 						</option>
 					</select>
-
-					<button
-						id="dropdownDefault"
-						data-dropdown-toggle="dropdown"
-						class="
-							text-white
-							bg-blue-700
-							hover:bg-blue-800
-							focus:ring-4 focus:outline-none focus:ring-blue-300
-							font-medium
-							rounded-lg
-							text-sm
-							px-4
-							py-2.5
-							text-center
-							inline-flex
-							items-center
-							dark:bg-blue-600
-							dark:hover:bg-blue-700
-							dark:focus:ring-blue-800
-						"
-						type="button"
-					>
-						Dropdown button
-						<svg
-							class="w-4 h-4 ml-2"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M19 9l-7 7-7-7"
-							></path>
-						</svg>
-					</button>
-					<!-- Dropdown menu -->
-					<div
-						id="dropdown"
-						class="
-							z-10
-							hidden
-							bg-white
-							divide-y divide-gray-100
-							rounded
-							shadow
-							w-44
-							dark:bg-gray-700
-						"
-						style="
-							position: absolute;
-							inset: 0px auto auto 0px;
-							margin: 0px;
-							transform: translate3d(351.5px, 735.5px, 0px);
-						"
-						data-popper-placement="bottom"
-					>
-						<ul
-							class="
-								py-1
-								text-sm text-gray-700
-								dark:text-gray-200
-							"
-							aria-labelledby="dropdownDefault"
-						>
-							<li>
-								<a
-									href="#"
-									class="
-										block
-										px-4
-										py-2
-										hover:bg-gray-100
-										dark:hover:bg-gray-600
-										dark:hover:text-white
-									"
-									>Dashboard</a
-								>
-							</li>
-							<li>
-								<a
-									href="#"
-									class="
-										block
-										px-4
-										py-2
-										hover:bg-gray-100
-										dark:hover:bg-gray-600
-										dark:hover:text-white
-									"
-									>Settings</a
-								>
-							</li>
-							<li>
-								<a
-									href="#"
-									class="
-										block
-										px-4
-										py-2
-										hover:bg-gray-100
-										dark:hover:bg-gray-600
-										dark:hover:text-white
-									"
-									>Earnings</a
-								>
-							</li>
-							<li>
-								<a
-									href="#"
-									class="
-										block
-										px-4
-										py-2
-										hover:bg-gray-100
-										dark:hover:bg-gray-600
-										dark:hover:text-white
-									"
-									>Sign out</a
-								>
-							</li>
-						</ul>
-					</div>
 
 					<button
 						data-collapse-toggle="mobile-menu-2"
