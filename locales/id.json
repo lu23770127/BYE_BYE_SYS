@@ -8,6 +8,15 @@
     "not-found": "Laman tidak ditemukan",
     "landing": {
       "title": "SELAMAT DATANG SYS"
+    },
+    "login": {
+      "email": "Alamat email",
+      "password": "kata sandi",
+      "forgetPassword": "Tidak ingat kata sandi",
+      "yourPassword": "Kata sandi Anda",
+      "sign-in-to-access-your-account": "Masuk untuk mengakses akun Anda",
+      "dontHaveAccount": "tidak ada akun?",
+      "signup": "daftar"
     }
   },
   "app": {

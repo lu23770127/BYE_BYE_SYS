@@ -8,6 +8,16 @@
     "not-found": "找不到此頁面",
     "landing": {
       "title": "遺書管理系統"
+    },
+    "login": {
+      "email": "電子信箱",
+      "password": "密碼",
+      "forgetPassword": "忘記密碼",
+      "yourPassword": "請輸入您的密碼⋯⋯",
+      "sign-in-to-access-your-account": "登入帳號",
+      "loginButton": "登入",
+      "dontHaveAccount": "沒有帳號？",
+      "signup": "註冊"
     }
   },
   "app": {
@@ -38,5 +48,6 @@
       "locale": "選擇語言"
     }
   },
-  "bye-bye-sys": "BYE BYE SYS"
+  "bye-bye-sys": "BYE BYE SYS",
+  "test": "test"
 }

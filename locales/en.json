@@ -8,6 +8,15 @@
     "not-found": "Page not found",
     "landing": {
       "title": "BYE BYE SYS"
+    },
+    "login": {
+      "email": "Email Address",
+      "password": "password",
+      "forgetPassword": "Forgot password",
+      "yourPassword": "Your Password",
+      "sign-in-to-access-your-account": "Sign in to access your account",
+      "dontHaveAccount": "\t\t\t\t\t\t\tDon't have an account yet?\n",
+      "signup": "register"
     }
   },
   "app": {
